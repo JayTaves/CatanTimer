@@ -45,8 +45,11 @@ input[type="text"] {
 input[type="number"] {
 	width: 55px;
 }
-#times *, #pause {
+#times * {
 	font-size: 40pt;
+}
+#pause {
+	font-size: 36pt;
 }
 #start {
 	align: center;
