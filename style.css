@@ -1,0 +1,28 @@
+* {
+	font-family: 'Lato', sans-serif;
+}
+
+tr {
+	font-size: 18pt;
+}
+input {
+	font-size: 18pt;
+}
+.red {
+	color: red;
+}
+.green {
+	color: green;
+}
+.gray {
+	color: lightgray;
+}
+.orange {
+	color: orange;
+}
+.brown {
+	color: brown;
+}
+.blue {
+	color: blue;
+}

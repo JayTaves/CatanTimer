@@ -1,0 +1,78 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  	<meta charset="utf-8">
+
+  	<title>Catan Timer</title>
+
+  	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+</head>
+
+<body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="timer.js"></script>
+</body>
+
+<table id="settings">
+	<tr class="tableHead">
+		<td>Name</td>
+		<td>Total</td>
+		<td>Per turn</td>
+		<td>Color</td>
+	</tr>
+	<tr class="globalInput">
+		<td></td>
+		<td><input id="globalTime" type="text" placeholder="time" size="8"></td>
+		<td><input id="globalPerMove" type="text" placeholder="time" size="8"></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td><input type="text" placeholder="name" size="8"></td>
+		<td><input type="text" placeholder="time" size="8"></td>
+		<td><input type="text" placeholder="time" size="8"></td>
+		<td>Blue</td>
+	</tr>
+	<tr>
+		<td><input type="text" placeholder="name" size="8"></td>
+		<td><input type="text" placeholder="time" size="8"></td>
+		<td><input type="text" placeholder="time" size="8"></td>
+		<td>Brown</td>
+	</tr>
+	<tr>
+		<td><input type="text" placeholder="name" size="8"></td>
+		<td><input type="text" placeholder="time" size="8"></td>
+		<td><input type="text" placeholder="time" size="8"></td>
+		<td>Red</td>
+	</tr>
+	<tr>
+		<td><input type="text" placeholder="name" size="8"></td>
+		<td><input type="text" placeholder="time" size="8"></td>
+		<td><input type="text" placeholder="time" size="8"></td>
+		<td>Orange</td>
+	</tr>
+	<tr>
+		<td><input type="text" placeholder="name" size="8"></td>
+		<td><input type="text" placeholder="time" size="8"></td>
+		<td><input type="text" placeholder="time" size="8"></td>
+		<td>Gray</td>
+	</tr>
+	<tr>
+		<td><input type="text" placeholder="name" size="8"></td>
+		<td><input type="text" placeholder="time" size="8"></td>
+		<td><input type="text" placeholder="time" size="8"></td>
+		<td>Green</td>
+	</tr>
+</table>
+
+<table id="times" hidden="true">
+	<tr>
+		<td>Name</td>
+		<td>Time</td>
+	</tr>
+</table>
+
+<input id="start" type="button" value="Ready">
+
+</html>
