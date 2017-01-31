@@ -6,12 +6,13 @@ function Timer(names, totals, perMove, colors) {
 	this.players = [];
 	this.gameTurn = 0;
 	this.numPlayers = 0;
+	this.isPaused = false;
 
 	for (i = 0; i < names.length; i++) {
 		if (names[i] !== "") {
 			this.timeTable.append(timeRow(names[i], totals[i], colors[i].toLowerCase()));
 			this.players.push(new Player(names[i], totals[i], perMove[i],
-				this.timeTable.find("tr").eq(this.numPlayers + 1).children("td").eq(1), colors[i]));
+				this.timeTable.find("tr").eq(this.numPlayers + 1).children("td").eq(1), colors[i], this));
 			this.numPlayers++;
 		}
 	}
@@ -24,7 +25,32 @@ function Timer(names, totals, perMove, colors) {
 
 		self = this;
 		self.players[0].doTurn();
-		$(document).keypress(this.nextTurn(self));
+		$("input#start").click(function () {
+			var oldPlayer, newPlayer;
+
+			oldPlayer = self.players[self.gameTurn % self.numPlayers];
+			console.log(oldPlayer.name + "'s turn ended");
+			oldPlayer.isTurn = false;
+
+			self.gameTurn++;
+			newPlayer = self.players[self.gameTurn % self.numPlayers];
+			console.log(newPlayer.name + "'s turn started");
+			newPlayer.doTurn();
+		});
+		$("input#pause").click(function () {
+			var player;
+
+			self.isPaused = !self.isPaused;
+			$(this).val(self.isPaused ? "Play" : "Pause");
+			$("input#start").prop("disabled", self.isPaused);
+
+			player = self.players[self.gameTurn % self.numPlayers];
+			if (self.isPaused) {
+				player.isTurn = false;
+			} else {
+				player.doTurn();
+			}
+		});
 	}
 
 	this.nextTurn = function (self) {
@@ -45,12 +71,13 @@ function Timer(names, totals, perMove, colors) {
 	}
 }
 
-function Player(name, time, perMove, timeElem, color) {
+function Player(name, time, perMove, timeElem, color, timer) {
 	this.name = name;
 	this.time = time;
 	this.perMove = perMove;
 	this.timeElem = timeElem;
 	this.color = color.toLowerCase();
+	this.timer = timer;
 
 	this.isTurn = false;
 	this.timeInterval;
@@ -64,7 +91,9 @@ function Player(name, time, perMove, timeElem, color) {
 	  	this.timeinterval = setInterval(function(){
 		    if(!player.isTurn || player.time <= 0){
 		      	clearInterval(player.timeinterval);
-		      	player.time = player.time + player.perMove;
+		      	if (!this.timer.isPaused) {
+			      	player.time = player.time + player.perMove;
+		      	}
 		    } else {
 				player.time = player.time - 1;
 		    }
@@ -74,7 +103,7 @@ function Player(name, time, perMove, timeElem, color) {
 }
 
 function timeRow(player, time, color) {
-	return "<tr class='" + color + "'><td>" + player + "</td><td>" +
+	return "<tr class='" + color + "'><td class='left'>" + player + "</td><td>" +
 		time + "</td></tr>";
 }
 
@@ -146,7 +175,8 @@ $(document).ready(function () {
 
 		$(this).val("Start").one("click", function () {
 			timer.startGame();
-			$(this).hide();
+			$(this).val("Next");
+			$("input#pause").show();
 		});
 	});
 });
