@@ -173,7 +173,7 @@ $(document).ready(function () {
 
 		timer = new Timer(names, totals, perMove, colors);
 
-		$(this).val("Start").one("click", function () {
+		$(this).val("Start").css("font-size", "40pt").one("click", function () {
 			timer.startGame();
 			$(this).val("Next");
 			$("input#pause").show();

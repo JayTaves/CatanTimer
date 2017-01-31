@@ -45,3 +45,12 @@ input[type="text"] {
 input[type="number"] {
 	width: 55px;
 }
+#times *, #pause {
+	font-size: 40pt;
+}
+#start {
+	align: center;
+}
+#times td {
+	padding: 5px;
+}
