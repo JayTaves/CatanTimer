@@ -6,7 +6,7 @@ tr {
 	font-size: 18pt;
 }
 input {
-	font-size: 18pt;
+	font-size: 14pt;
 }
 input[type="text"], input[type="number"] {
   padding: 5;
@@ -40,8 +40,8 @@ input[type="text"].focus, input[type="number"].focus {
 	text-align: right;
 }
 input[type="text"] {
-	width: 80px;
+	width: 70px;
 }
 input[type="number"] {
-	width: 65px;
+	width: 55px;
 }
