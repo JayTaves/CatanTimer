@@ -114,7 +114,7 @@ function collectSettings() {
 		names : [],
 		totals : [],
 		perMove : [],
-		colors : ["blue", "brown", "red", "orange", "gray", "green"]
+		colors : ["blue", "brown", "gray", "green", "orange", "red"]
 	};
 
 	$("table#settings").find("tr:not(:first)").not(".globalInput").each(function (i) {
