@@ -31,6 +31,7 @@ function Timer(names, totals, perMove, colors) {
 			oldPlayer = self.players[self.gameTurn % self.numPlayers];
 			console.log(oldPlayer.name + "'s turn ended");
 			oldPlayer.isTurn = false;
+			$("span#numturns").text(self.gameTurn);
 
 			self.gameTurn++;
 			newPlayer = self.players[self.gameTurn % self.numPlayers];
@@ -97,14 +98,18 @@ function Player(name, time, perMove, timeElem, color, timer) {
 		    } else {
 				player.time = player.time - 1;
 		    }
-		    $(player.timeElem).text(player.time);
+		    $(player.timeElem).text(toMinutes(player.time));
 		},1000);
 	};
 }
 
+function toMinutes(time) 	{
+	return Math.floor(time / 60) + ":" + time % 60;
+}
+
 function timeRow(player, time, color) {
 	return "<tr class='" + color + "'><td class='left'>" + player + "</td><td>" +
-		time + "</td></tr>";
+		toMinutes(time) + "</td></tr>";
 }
 
 function collectSettings() {
@@ -114,7 +119,7 @@ function collectSettings() {
 		names : [],
 		totals : [],
 		perMove : [],
-		colors : ["blue", "brown", "gray", "green", "orange", "red"]
+		colors : []
 	};
 
 	$("table#settings").find("tr:not(:first)").not(".globalInput").each(function (i) {
@@ -123,12 +128,14 @@ function collectSettings() {
 		name = $(this).find("input").eq(0).val();
 		totalTime = $(this).find("input").eq(1).val();
 		perMove = $(this).find("input").eq(2).val();
+		color = $(this).find("input").eq(3).val();
 
 		validName = name !== "";
 
 		settings.names[i] = name;
 		settings.totals[i] = validName ? parseInt(totalTime, 10) : 0;
 		settings.perMove[i] = validName ? parseInt(perMove, 10) : 0;
+		settings.colors[i] = validName ? color : "";
 	});
 
 	return settings;
