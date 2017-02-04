@@ -30,57 +30,54 @@
 		<td></td>
 	</tr>
 	<tr>
-		<td class="left"><input type="text" placeholder="name" inputmode="latin-name"></td>
+		<td class="left"><input id="pone" type="text" placeholder="name" inputmode="latin-name"></td>
+		<td><input type="number" placeholder="time" inputmode="numeric"></td>
+		<td><input type="number" placeholder="time" inputmode="numeric"></td>
+		<td><input type="text" placeholder="color" value="Blue"></td>
+	</tr>
+	<tr>
+		<td class="left"><input id="ptwo" type="text" placeholder="name" inputmode="latin-name"></td>
+		<td><input type="number" placeholder="time" inputmode="numeric"></td>
+		<td><input type="number" placeholder="time" inputmode="numeric"></td>
+		<td><input type="text" placeholder="color" value="Green"></td>
+	</tr>
+	<tr>
+		<td class="left"><input id="pthree" type="text" placeholder="name" inputmode="latin-name"></td>
 		<td><input type="number" placeholder="time" inputmode="numeric"></td>
 		<td><input type="number" placeholder="time" inputmode="numeric"></td>
 		<td><input type="text" placeholder="color"></td>
 	</tr>
 	<tr>
-		<td class="left"><input type="text" placeholder="name" inputmode="latin-name"></td>
+		<td class="left"><input id="pfour" type="text" placeholder="name" inputmode="latin-name"></td>
 		<td><input type="number" placeholder="time" inputmode="numeric"></td>
 		<td><input type="number" placeholder="time" inputmode="numeric"></td>
 		<td><input type="text" placeholder="color"></td>
 	</tr>
 	<tr>
-		<td class="left"><input type="text" placeholder="name" inputmode="latin-name"></td>
+		<td class="left"><input id="pfive" type="text" placeholder="name" inputmode="latin-name"></td>
 		<td><input type="number" placeholder="time" inputmode="numeric"></td>
 		<td><input type="number" placeholder="time" inputmode="numeric"></td>
 		<td><input type="text" placeholder="color"></td>
 	</tr>
 	<tr>
-		<td class="left"><input type="text" placeholder="name" inputmode="latin-name"></td>
-		<td><input type="number" placeholder="time" inputmode="numeric"></td>
-		<td><input type="number" placeholder="time" inputmode="numeric"></td>
-		<td><input type="text" placeholder="color"></td>
-	</tr>
-	<tr>
-		<td class="left"><input type="text" placeholder="name" inputmode="latin-name"></td>
-		<td><input type="number" placeholder="time" inputmode="numeric"></td>
-		<td><input type="number" placeholder="time" inputmode="numeric"></td>
-		<td><input type="text" placeholder="color"></td>
-	</tr>
-	<tr>
-		<td class="left"><input type="text" placeholder="name" inputmode="latin-name"></td>
+		<td class="left"><input id="psix" type="text" placeholder="name" inputmode="latin-name"></td>
 		<td><input type="number" placeholder="time" inputmode="numeric"></td>
 		<td><input type="number" placeholder="time" inputmode="numeric"></td>
 		<td><input type="text" placeholder="color"></td>
 	</tr>
 </table>
 
-<table id="times" hidden="true">
-	<tr>
-		<td class="left">Name</td>
-		<td>Time</td>
-	</tr>
-</table>
-
-<div align="center">
+<div id="timediv">
+	<table id="times" hidden="true">
+	</table>
 	<br />
-	<input id="start" type="button" value="Ready">
-	<input id="pause" type="button" value="Pause" hidden="true">
-	<br />
-	<span id="numturns"></span>
-	<!--<input id="fontsize" type="text" value="40">-->
+	<input id="start" class="startbutton" type="button" value="Ready">
+	<input id="pause" class="pausebutton" type="button" value="Pause" hidden="true">
+	<input id="jaybutton" type="button">
+</div>
+<div id="buttondiv" hidden="true">
+	<div id="buttontext" class="startbutton">Start</div>
+	<div id="pausetext" class="pausebutton">Pause</div>
 </div>
 
 </html>

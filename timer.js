@@ -12,7 +12,7 @@ function Timer(names, totals, perMove, colors) {
 		if (names[i] !== "") {
 			this.timeTable.append(timeRow(names[i], totals[i], colors[i].toLowerCase()));
 			this.players.push(new Player(names[i], totals[i], perMove[i],
-				this.timeTable.find("tr").eq(this.numPlayers + 1).children("td").eq(1), colors[i], this));
+				this.timeTable.find("tr").eq(this.numPlayers).children("td").eq(1), colors[i], this));
 			this.numPlayers++;
 		}
 	}
@@ -25,20 +25,19 @@ function Timer(names, totals, perMove, colors) {
 
 		self = this;
 		self.players[0].doTurn();
-		$("input#start").click(function () {
+		$(".startbutton").click(function () {
 			var oldPlayer, newPlayer;
 
 			oldPlayer = self.players[self.gameTurn % self.numPlayers];
 			console.log(oldPlayer.name + "'s turn ended");
 			oldPlayer.isTurn = false;
-			$("span#numturns").text(self.gameTurn);
 
 			self.gameTurn++;
 			newPlayer = self.players[self.gameTurn % self.numPlayers];
 			console.log(newPlayer.name + "'s turn started");
 			newPlayer.doTurn();
 		});
-		$("input#pause").click(function () {
+		$(".pausebutton").click(function () {
 			var player;
 
 			self.isPaused = !self.isPaused;
@@ -88,12 +87,14 @@ function Player(name, time, perMove, timeElem, color, timer) {
 
 		this.isTurn = true;
 		player = this;
+		this.timeElem.parent().css("color", "white").css("background-color", this.color);
 
 	  	this.timeinterval = setInterval(function(){
 		    if(!player.isTurn || player.time <= 0){
 		      	clearInterval(player.timeinterval);
 		      	if (!this.timer.isPaused) {
 			      	player.time = player.time + player.perMove;
+		      		player.timeElem.parent().css("color", player.color).css("background-color", "white");
 		      	}
 		    } else {
 				player.time = player.time - 1;
@@ -104,11 +105,12 @@ function Player(name, time, perMove, timeElem, color, timer) {
 }
 
 function toMinutes(time) 	{
-	return Math.floor(time / 60) + ":" + time % 60;
+	var res = time % 60;
+	return Math.floor(time / 60) + (res < 10 ? ":0" : ":") + res;
 }
 
 function timeRow(player, time, color) {
-	return "<tr class='" + color + "'><td class='left'>" + player + "</td><td>" +
+	return "<tr class='" + color + " timerow'><td class='left'>" + player + "</td><td>" +
 		toMinutes(time) + "</td></tr>";
 }
 
@@ -171,12 +173,6 @@ $(document).ready(function () {
 		});
 	});
 
-	/*
-	$("input#fontsize").on("input", function () {
-		$("#times").children().css("font-size", $(this).val() + "pt");
-	});
-	*/
-
 	$("input#start").one("click", function () {
 		settings = collectSettings();
 		names = settings.names;
@@ -185,11 +181,41 @@ $(document).ready(function () {
 		colors = settings.colors;
 
 		timer = new Timer(names, totals, perMove, colors);
+		$("#times").find("*").css("font-size", 100 / (timer.numPlayers + 3) + "vh");
 
-		$(this).val("Start").css("font-size", "36pt").one("click", function () {
-			timer.startGame();
-			$(this).val("Next");
+		if ($(window).width() < 800) {
+			$("#buttondiv").hide();
+			$("input#start").val("Start").show();
 			$("input#pause").show();
+		} else {
+			$("#timerdiv").width("50vw").height("100vh");
+			$("#buttondiv").height("100vh").width("50vw").show();
+			$("input#start, input#pause").hide();
+		}
+
+		$(".startbutton").one("click", function () {
+			timer.startGame();
+			$("input#start").val("Next");
+			$("#buttontext").text("Next");
 		});
+	});
+
+	$(window).resize(function () {
+		if ($(this).width() < 800) {
+			$("#buttondiv").hide();
+			$("input#start, input#pause").show();
+		} else {
+			$("#timerdiv").width("50vw").height("100vh");
+			$("#buttondiv").width("50vw").height("100vh").show();
+			$("input#start, input#pause").hide();
+		}
+	});
+
+	$("input#jaybutton").click(function () {
+		$("input#globalTime").val(67).click();
+		$("input#globalPerMove").val(1).click();
+		$("input#pone").val("Jay").click();
+		$("input#ptwo").val("Miré").click();
+		$(this).hide();
 	});
 });

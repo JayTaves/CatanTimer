@@ -1,7 +1,10 @@
 * {
 	font-family: 'Lato', sans-serif;
 }
-
+body, html {
+	padding: 0px;
+	margin: 0px;
+}
 tr {
 	font-size: 18pt;
 }
@@ -45,15 +48,53 @@ input[type="text"] {
 input[type="number"] {
 	width: 55px;
 }
+table {
+	border-collapse: collapse;
+}
 #times * {
-	font-size: 120pt;
+	font-size: 10pt;
 }
 #pause {
-	font-size: 36pt;
+	font-size: 5pt;
 }
 #start {
 	align: center;
 }
 #times td {
 	padding: 5px;
+}
+#timediv {
+	float: left;
+}
+#buttondiv {
+	float: right;
+	font-size: 10vw;
+	color: black;
+	text-align: center;
+}
+#buttontext {
+	background-color: white;
+	height: 75vh;
+}
+#buttontext:hover {
+	background-color: lightblue;
+	color: darkgray;
+	cursor: pointer;
+}
+#pausetext {
+	background-color: white;
+	height: 25vh;
+}
+#pausetext:hover {
+	background-color: lightblue;
+	color: darkgray;
+	cursor: pointer;
+}
+.timerow td:first-child {
+	border-top-left-radius: 25px;
+	border-bottom-left-radius: 25px;
+}
+.timerow :not(td:first-child) {
+	border-top-right-radius: 25px;
+	border-bottom-right-radius: 25px;
 }
