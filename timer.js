@@ -171,6 +171,12 @@ $(document).ready(function () {
 		});
 	});
 
+	/*
+	$("input#fontsize").on("input", function () {
+		$("#times").children().css("font-size", $(this).val() + "pt");
+	});
+	*/
+
 	$("input#start").one("click", function () {
 		settings = collectSettings();
 		names = settings.names;
