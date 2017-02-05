@@ -29,11 +29,13 @@ function Timer(names, totals, perMove, colors) {
 			var oldPlayer, newPlayer;
 
 			oldPlayer = self.players[self.gameTurn % self.numPlayers];
+			oldPlayer.timeElem.parent().addClass("noturn").removeClass("turn");
 			console.log(oldPlayer.name + "'s turn ended");
 			oldPlayer.isTurn = false;
 
 			self.gameTurn++;
 			newPlayer = self.players[self.gameTurn % self.numPlayers];
+			newPlayer.timeElem.parent().addClass("turn").removeClass("noturn");
 			console.log(newPlayer.name + "'s turn started");
 			newPlayer.doTurn();
 		});
@@ -87,14 +89,12 @@ function Player(name, time, perMove, timeElem, color, timer) {
 
 		this.isTurn = true;
 		player = this;
-		this.timeElem.parent().css("color", "white").css("background-color", this.color);
 
 	  	this.timeinterval = setInterval(function(){
 		    if(!player.isTurn || player.time <= 0){
 		      	clearInterval(player.timeinterval);
 		      	if (!this.timer.isPaused) {
 			      	player.time = player.time + player.perMove;
-		      		player.timeElem.parent().css("color", player.color).css("background-color", "white");
 		      	}
 		    } else {
 				player.time = player.time - 1;

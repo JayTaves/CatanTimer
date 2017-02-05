@@ -90,11 +90,45 @@ table {
 	color: darkgray;
 	cursor: pointer;
 }
-.timerow td:first-child {
-	border-top-left-radius: 25px;
-	border-bottom-left-radius: 25px;
+.noturn {
+	background-color: white;
 }
-.timerow :not(td:first-child) {
-	border-top-right-radius: 25px;
-	border-bottom-right-radius: 25px;
+.turn {
+	color: white;
+}
+.turn.blue {
+	background-color: blue;
+}
+.noturn.blue {
+	color: blue;
+}
+.turn.brown {
+	background-color: brown;
+}
+.noturn.brown {
+	color: brown;
+}
+.turn.gray {
+	background-color: gray;
+}
+.noturn.gray {
+	color: gray;
+}
+.turn.orange {
+	background-color: orange;
+}
+.noturn.orange {
+	color: orange;
+}
+.turn.red {
+	background-color: red;
+}
+.noturn.red {
+	color: red;
+}
+.turn.green {
+	background-color: green;
+}
+.noturn.green {
+	color: green;
 }
